@@ -355,7 +355,7 @@ TEST_F(TestMockMigrationHttpClient, OpenConnectFail) {
 
   C_SaferCond ctx1;
   http_client.open(&ctx1);
-  ASSERT_EQ(-ECONNREFUSED, ctx1.wait());
+  ASSERT_EQ(-99, ctx1.wait());
 }
 
 TEST_F(TestMockMigrationHttpClient, IssueHead) {

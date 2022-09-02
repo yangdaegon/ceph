@@ -342,7 +342,7 @@ class TestMonitoring:
     @patch("cephadm.serve.CephadmServe._run_cephadm")
     @patch("mgr_module.MgrModule.get")
     def test_alertmanager_config_v4(self, mock_get, _run_cephadm, cephadm_module: CephadmOrchestrator):
-        dashboard_url = "http://192.168.0.123:8080"
+        dashboard_url = "http://ip-192-168-0-123.ec2.internal:8080"
         _run_cephadm.side_effect = async_side_effect(('{}', '', 0))
         mock_get.return_value = {"services": {"dashboard": dashboard_url}}
 
