@@ -96,8 +96,6 @@ ENDOFKEY
 	$SUDO env DEBIAN_FRONTEND=noninteractive apt-get update -y || true
 	$SUDO env DEBIAN_FRONTEND=noninteractive apt-get install -y g++-${new}
     fi
-
-    in_jenkins && echo "CI_DEBUG: End ensure_decent_gcc_on_ubuntu() in install-deps.sh"
 }
 
 function ensure_python3_sphinx_on_ubuntu {
@@ -343,6 +341,10 @@ else
                 ensure_decent_gcc_on_ubuntu 11 focal
                 [ ! $NO_BOOST_PKGS ] && install_boost_on_ubuntu focal
                 $with_zbd && install_libzbd_on_ubuntu focal
+                ;;
+            *Jammy*)
+                [ ! $NO_BOOST_PKGS ] && install_boost_on_ubuntu jammy
+                $SUDO apt-get install -y gcc
                 ;;
             *)
                 $SUDO apt-get install -y gcc
